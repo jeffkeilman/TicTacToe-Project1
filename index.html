@@ -37,12 +37,16 @@
               <form id="loginRegisterForm">
                 <div class="form-group">
                   <label for="emailLabel">Email address</label>
-                  <input name="customer[email]" type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input name="credentials[email]" type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                   <label for="passwordLabel">Password</label>
-                  <input name="customer[password]" type="password" class="form-control" id="passwordLabel" placeholder="Password">
+                  <input name="credentials[password]" type="password" class="form-control" id="passwordLabel" placeholder="Password">
+                </div>
+                <div class="form-group" id="confirmPassword">
+                  <label for="passwordLabel">Confirm Password</label>
+                  <input name="credentials[password_confirmation]" type="password" class="form-control" id="passwordLabel" placeholder="Password">
                 </div>
                 <div class="form-check">
                   <!-- New users will be able to register, input will be inserted automatically -->

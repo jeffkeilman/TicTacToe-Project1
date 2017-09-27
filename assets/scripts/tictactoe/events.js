@@ -4,7 +4,7 @@ const ui = require('./ui')
 
 const onLoginRegister = function (event) {
   event.preventDefault()
-  const data = getFormFields(event.target)
+  let data = getFormFields(event.target)
 
   if ($('#isRegister').is(':checked')) {
     // register
@@ -13,11 +13,16 @@ const onLoginRegister = function (event) {
     //   .catch(ui.registerFailure)
     console.log('Not ready yet')
   } else {
-    // login
-    // api.login(data)
-    //   .then(ui.signOnSuccess)
-    //   .catch(ui.signOnFailure)
-    console.log('Not ready yet')
+    // login, ensure data is cleaned of password_conf
+    data = {
+      credentials: {
+        email: data.credentials.email,
+        password: data.credentials.password
+      }
+    }
+    api.login(data)
+      .then(ui.signOnSuccess)
+      .catch(ui.signOnFailure)
   }
 }
 
