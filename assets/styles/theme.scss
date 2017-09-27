@@ -20,12 +20,24 @@ h3 {
   font-size: $explanation-font-size;
 }
 
+.game-ar {
+  margin-top: 100px;
+  text-align: center;
+}
+
 .intro {
   text-align: center;
 }
 
 .login {
   float: right;
+}
+
+.game-btn {
+  font-size: 100px;
+  height: 100%;
+  text-align: center;
+  width: 100%;
 }
 
 
@@ -36,4 +48,44 @@ h3 {
   font-size: $heading-font-size;
   font-weight: bold;
   padding-left: 10px;
+}
+
+.game-sq {
+  height: 150px;
+}
+
+.top-left-sq {
+  border-bottom: $border-size $border-type $border-color;
+  border-right:  $border-size $border-type $border-color;
+}
+
+.top-middle-sq {
+  border-bottom: $border-size $border-type $border-color;
+  border-right: $border-size $border-type $border-color;
+}
+
+.top-right-sq {
+  border-bottom: $border-size $border-type $border-color;
+}
+
+.middle-left-sq {
+  border-bottom: $border-size $border-type $border-color;
+  border-right: $border-size $border-type $border-color;
+}
+
+.middle-middle-sq {
+  border-bottom: $border-size $border-type $border-color;
+  border-right: $border-size $border-type $border-color;
+}
+
+.middle-right-sq {
+  border-bottom: $border-size $border-type $border-color;
+}
+
+.bottom-left-sq {
+  border-right: $border-size $border-type $border-color;
+}
+
+.bottom-middle-sq {
+  border-right: $border-size $border-type $border-color;
 }

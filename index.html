@@ -22,19 +22,63 @@
         </div>
       </header>
       <div id="displayFeedback"></div>
-      <div class="col-xs-2"></div>
-      <div class="intro col-xs-8">
-        <h1>Tic-Tac-Toe</h1>
-        <h3>Game of Kings</h3>
-        <p class="explanation">
-          The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
-          game board. The first player is known as X and the second is O. Players alternate
-          placing Xs and Os on the game board until either oppent has three in a row or all nine
-          squares are filled. X always goes first, and in the event that no one has three in a row,
-          the stalemate is called a cat game.
-        </p>
+      <div id="explanationArea">
+        <div class="col-xs-2"></div>
+        <div class="intro col-xs-8">
+          <h1>Tic-Tac-Toe</h1>
+          <h3>Game of Kings</h3>
+          <p class="explanation">
+            The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
+            game board. The first player is known as X and the second is O. Players alternate
+            placing Xs and Os on the game board until either oppent has three in a row or all nine
+            squares are filled. X always goes first, and in the event that no one has three in a row,
+            the stalemate is called a cat game.
+          </p>
+        </div>
+        <div class="col-xs-2"></div>
       </div>
-      <div class="col-xs-2"></div>
+      <div class="game-ar" id="gameArea">
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 top-left-sq game-sq">
+            <button class="btn game-btn" id="topLeft"></button>
+          </div>
+          <div class="col-xs-2 top-middle-sq game-sq">
+            <button class="btn game-btn" id="topMiddle"></button>
+          </div>
+          <div class="col-xs-2 top-right-sq game-sq">
+            <button class="btn game-btn" id="topRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 middle-left-sq game-sq">
+            <button class="btn game-btn" id="middleLeft"></button>
+          </div>
+          <div class="col-xs-2 middle-middle-sq game-sq">
+            <button class="btn game-btn" id="middleMiddle"></button>
+          </div>
+          <div class="col-xs-2 middle-right-sq game-sq">
+            <button class="btn game-btn" id="middleRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 bottom-left-sq game-sq">
+            <button class="btn game-btn" id="bottomLeft"></button>
+          </div>
+          <div class="col-xs-2 bottom-middle-sq game-sq">
+            <button class="btn game-btn" id="bottomMiddle"></button>
+          </div>
+          <div class="col-xs-2 game-sq">
+            <button class="btn game-btn" id="bottomRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+      </div>
+
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
