@@ -7,7 +7,8 @@ const events = require('./tictactoe/events')
 $(() => {
   setAPIOrigin(location, config)
   events.addEventHandlers()
-  // TODO: Handle display of password conf
+  // default state for password state
+  $('#confirmPassword').hide()
 })
 
 // use require with a reference to bundle the file and use it in this file

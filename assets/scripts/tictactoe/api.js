@@ -1,3 +1,5 @@
+'use strict'
+
 const config = require('../config')
 
 const register = function (data) {
@@ -9,7 +11,6 @@ const register = function (data) {
 }
 
 const login = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/sign-in',
     method: 'POST',

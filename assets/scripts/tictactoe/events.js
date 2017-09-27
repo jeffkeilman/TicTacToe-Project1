@@ -1,3 +1,5 @@
+'use strict'
+
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
@@ -32,8 +34,18 @@ const addEventHandlers = function () {
   })
   // Login/Register submit
   $('#loginRegisterForm').on('submit', onLoginRegister)
+  // Show/Hide password conf
+  $('#isRegister').on('change', _showHidePassConf)
 }
 
+const _showHidePassConf = function () {
+  console.log('Does this work?')
+  if ($('#isRegister').is(':checked')) {
+    $('#confirmPassword').show()
+  } else {
+    $('#confirmPassword').hide()
+  }
+}
 module.exports = {
   addEventHandlers,
   onLoginRegister

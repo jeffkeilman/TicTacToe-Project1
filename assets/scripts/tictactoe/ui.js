@@ -1,4 +1,5 @@
 'use strict'
+
 const store = require('../store.js')
 
 const signOnSuccess = function (data) {
