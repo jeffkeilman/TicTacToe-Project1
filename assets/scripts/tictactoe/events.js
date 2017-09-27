@@ -8,10 +8,9 @@ const onLoginRegister = function (event) {
 
   if ($('#isRegister').is(':checked')) {
     // register
-    // api.register(data)
-    //   .then(ui.registerSuccess)
-    //   .catch(ui.registerFailure)
-    console.log('Not ready yet')
+    api.register(data)
+      .then(ui.registerSuccess)
+      .catch(ui.registerFailure)
   } else {
     // login, ensure data is cleaned of password_conf
     data = {
