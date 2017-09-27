@@ -7,15 +7,33 @@ header {
   width: 100%;
 }
 
-.title {
-  color: $heading-font-color;
-  float: left;
-  font-family: $heading-font-face;
-  font-size: $heading-font-size;
-  font-weight: bold;
-  padding-left: 10px;
+h1 {
+  margin-bottom: 0;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.explanation {
+  font-family: $font-face;
+  font-size: $explanation-font-size;
+}
+
+.intro {
+  text-align: center;
 }
 
 .login {
   float: right;
+}
+
+
+.title {
+  color: $heading-font-color;
+  float: left;
+  font-family: $font-face;
+  font-size: $heading-font-size;
+  font-weight: bold;
+  padding-left: 10px;
 }

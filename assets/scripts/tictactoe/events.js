@@ -39,7 +39,6 @@ const addEventHandlers = function () {
 }
 
 const _showHidePassConf = function () {
-  console.log('Does this work?')
   if ($('#isRegister').is(':checked')) {
     $('#confirmPassword').show()
   } else {

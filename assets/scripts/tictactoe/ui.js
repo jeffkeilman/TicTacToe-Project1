@@ -9,12 +9,11 @@ const signOnSuccess = function (data) {
   store.user = data.user
 }
 
-const signOnFailure = function (error) {
+const signOnFailure = function () {
   $('#displayFeedback').html(
     '<div class="alert alert-danger" role="alert">Hmm... looks like we don\'t have an account with that email and password.<div>'
   )
   _clearModal()
-  console.log(error)
 }
 
 const registerSuccess = function (data) {
@@ -37,8 +36,10 @@ const _clearModal = function (all) {
     $('#emailLabel').val('')
     $('#passwordLabel').val('')
     $('#passwordConfLabel').val('')
+    $('#isRegister').attr('checked', false)
   } else {
     $('#passwordLabel').val('')
+    $('#isRegister').attr('checked', false)
   }
 }
 
