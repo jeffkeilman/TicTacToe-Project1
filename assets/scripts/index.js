@@ -11,6 +11,7 @@ $(() => {
   $('#confirmPassword').hide()
   $('#gameArea').hide()
   $('#logoutButton').hide()
+  $('#changePass').hide()
 })
 
 // use require with a reference to bundle the file and use it in this file

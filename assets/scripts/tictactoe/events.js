@@ -5,6 +5,7 @@ const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
 
 const onLoginRegister = function (event) {
+  // TODO: Add error handling
   event.preventDefault()
   let data = getFormFields(event.target)
 
@@ -35,12 +36,26 @@ const onLogout = function (event) {
     .catch(ui.logoutFailure)
 }
 
+const onChangePass = function (event) {
+  // TODO: Add error handling
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.changePass(data)
+    .then(ui.changePassSuccess)
+    .catch(ui.changePassFailure)
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
-  $('#myModal').on('shown.bs.modal', function () {
+  $('#loginRegisterModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
+  $('#changePassModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
   })
   $('#loginRegisterForm').on('submit', onLoginRegister)
+  $('#changePassForm').on('submit', onChangePass)
   $('#logoutButton').on('click', onLogout)
   // Show/Hide password conf
   $('#isRegister').on('change', _showHidePassConf)

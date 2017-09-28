@@ -29,8 +29,20 @@ const logout = function () {
   })
 }
 
+const changePass = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/change-password/' + store.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   register,
   login,
-  logout
+  logout,
+  changePass
 }

@@ -16,16 +16,19 @@
       <header>
         <div class='title'>Tic Tac Toe</div>
         <div class='login-logout'>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="loginButton">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegisterModal" id="loginButton">
             Login
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassModal" id="changePass">
+            Change Password
           </button>
           <button type="button" class="btn btn-primary" id="logoutButton">
             Logout
           </button>
         </div>
       </header>
+      <div id="displayFeedback"></div>
       <div id="pregame">
-        <div id="displayFeedback"></div>
         <div id="explanationArea">
           <div class="col-xs-2"></div>
           <div class="col-xs-8">
@@ -90,8 +93,8 @@
         </div>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
+      <!-- Login/Register Modal -->
+      <div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -122,6 +125,34 @@
                     <input type="checkbox" class="form-check-input" id="isRegister">
                     Register new user?
                   </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Pass Modal -->
+      <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="buttonLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- User form for email and password -->
+              <form id="changePassForm">
+                <div class="form-group">
+                  <label for="prevPassLabel">Previous Password</label>
+                  <input name="passwords[old]" type="password" class="form-control" id="oldPassLabel" aria-describedby="emailHelp" placeholder="Previous Password">
+                </div>
+                <div class="form-group">
+                  <label for="curPassLabel">New Password</label>
+                  <input name="passwords[new]" type="password" class="form-control" id="newPassLabel" placeholder="New Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
