@@ -4,7 +4,7 @@ const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
 
-const onLoginRegister = function (event) {
+const _onLoginRegister = function (event) {
   // TODO: Add error handling
   event.preventDefault()
   let data = getFormFields(event.target)
@@ -28,7 +28,7 @@ const onLoginRegister = function (event) {
   }
 }
 
-const onLogout = function (event) {
+const _onLogout = function (event) {
   event.preventDefault()
 
   api.logout()
@@ -36,7 +36,7 @@ const onLogout = function (event) {
     .catch(ui.logoutFailure)
 }
 
-const onChangePass = function (event) {
+const _onChangePass = function (event) {
   // TODO: Add error handling
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -44,6 +44,22 @@ const onChangePass = function (event) {
   api.changePass(data)
     .then(ui.changePassSuccess)
     .catch(ui.changePassFailure)
+}
+
+const _onNewGame = function (event) {
+  event.preventDefault()
+
+  api.newGame()
+    .then(ui.newGameSuccess)
+    .catch(ui.newGameFailure)
+}
+
+const _showHidePassConf = function () {
+  if ($('#isRegister').is(':checked')) {
+    $('#confirmPassword').show()
+  } else {
+    $('#confirmPassword').hide()
+  }
 }
 
 const addEventHandlers = function () {
@@ -54,25 +70,18 @@ const addEventHandlers = function () {
   $('#changePassModal').on('shown.bs.modal', function () {
     $('#oldPassLabel').focus()
   })
-  $('#loginRegisterForm').on('submit', onLoginRegister)
-  $('#changePassForm').on('submit', onChangePass)
-  $('#logoutButton').on('click', onLogout)
+  $('#loginRegisterForm').on('submit', _onLoginRegister)
+  $('#changePassForm').on('submit', _onChangePass)
+  $('#logoutButton').on('click', _onLogout)
   // Show/Hide password conf
   $('#isRegister').on('change', _showHidePassConf)
+  $('#newGameButton').on('click', _onNewGame)
   $('.drop-down-items').click(function (event) {
     $('#selectGameSave').html($(event.currentTarget).text() +
     ' <span class="caret" id="hack"></span>')
   })
 }
 
-const _showHidePassConf = function () {
-  if ($('#isRegister').is(':checked')) {
-    $('#confirmPassword').show()
-  } else {
-    $('#confirmPassword').hide()
-  }
-}
 module.exports = {
-  addEventHandlers,
-  onLoginRegister
+  addEventHandlers
 }

@@ -64,6 +64,18 @@ const changePassFailure = function () {
   _clearChangePassModal()
 }
 
+const newGameSuccess = function (data) {
+  // TODO: build game and display
+}
+
+const newGameFailure = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">New game creation failed!</div>'
+  )
+}
+
 const _clearChangePassModal = function () {
   $('#changePassModal').modal('hide')
   $('#oldPassLabel').val('')
@@ -111,5 +123,7 @@ module.exports = {
   logoutSuccess,
   logoutFailure,
   changePassSuccess,
-  changePassFailure
+  changePassFailure,
+  newGameSuccess,
+  newGameFailure
 }
