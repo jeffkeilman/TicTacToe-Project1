@@ -64,8 +64,6 @@ const changePassFailure = function () {
   _clearChangePassModal()
 }
 
-// FOR GAME SELECTION SCREEN, remember to hide displayFeedback
-
 const _clearChangePassModal = function () {
   $('#changePassModal').modal('hide')
   $('#oldPassLabel').val('')
