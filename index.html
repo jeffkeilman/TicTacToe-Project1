@@ -15,9 +15,12 @@
 
       <header>
         <div class='title'>Tic Tac Toe</div>
-        <div class='login'>
+        <div class='login-logout'>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="loginButton">
             Login
+          </button>
+          <button type="button" class="btn btn-primary" id="logoutButton">
+            Logout
           </button>
         </div>
       </header>
@@ -25,7 +28,7 @@
         <div id="displayFeedback"></div>
         <div id="explanationArea">
           <div class="col-xs-2"></div>
-          <div class="intro col-xs-8">
+          <div class="col-xs-8">
             <h1>Tic-Tac-Toe</h1>
             <h3>Game of Kings</h3>
             <p class="explanation">
@@ -39,7 +42,10 @@
           <div class="col-xs-2"></div>
         </div>
       </div>
-      <div class="game-ar" id="gameArea">
+      <div id="gameSelectionArea">
+        <!-- Everything you need to start a new game or continue an old one -->
+      </div>
+      <div id="gameArea">
         <div class="turn-display" id="turnDisplay">
           Hey <span id="playerName"></span>, it's your turn!
         </div>

@@ -27,13 +27,21 @@ const onLoginRegister = function (event) {
   }
 }
 
+const onLogout = function (event) {
+  event.preventDefault()
+
+  api.logout()
+    .then(ui.logoutSuccess)
+    .catch(ui.logoutFailure)
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
   })
-  // Login/Register submit
   $('#loginRegisterForm').on('submit', onLoginRegister)
+  $('#logoutButton').on('click', onLogout)
   // Show/Hide password conf
   $('#isRegister').on('change', _showHidePassConf)
 }

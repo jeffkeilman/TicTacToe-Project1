@@ -30,6 +30,19 @@ const registerFailure = function (data) {
   _clearModal(true)
 }
 
+const logoutSuccess = function () {
+  _restoreMain()
+}
+
+const logoutFailure = function () {
+  // display feedback if it's hidden
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">There is something wrong with the logout. Harass the developer!<div>'
+  )
+}
+
 const _clearModal = function (all) {
   $('#myModal').modal('hide')
   if (all) {
@@ -46,12 +59,25 @@ const _clearModal = function (all) {
 const _prepGameArea = function () {
   $('#pregame').hide()
   $('#loginButton').hide()
+  $('#displayFeedback').hide()
+  $('#logoutButton').show()
   $('#gameArea').show()
+  // TODO: Show game selection screen
+}
+
+const _restoreMain = function () {
+  $('#gameArea').hide()
+  $('#logoutButton').hide()
+  // TODO: Hide game selection screen
+  $('#pregame').show()
+  $('#loginButton').show()
 }
 
 module.exports = {
   signOnSuccess,
   signOnFailure,
   registerSuccess,
-  registerFailure
+  registerFailure,
+  logoutSuccess,
+  logoutFailure
 }

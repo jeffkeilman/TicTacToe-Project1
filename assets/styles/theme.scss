@@ -1,6 +1,10 @@
 @import './colors';
 @import './typography';
 
+body {
+  text-align: center;
+}
+
 header {
   background-color: $heading-color;
   height: $heading-height;
@@ -20,22 +24,13 @@ h3 {
   font-size: $explanation-font-size;
 }
 
-.game-ar {
-  text-align: center;
-}
-
-.intro {
-  text-align: center;
-}
-
-.login {
+.login-logout {
   float: right;
 }
 
 .game-btn {
   font-size: 100px;
   height: 100%;
-  text-align: center;
   width: 100%;
 }
 
