@@ -1,5 +1,17 @@
 'use strict'
 
+const gameMap = {
+  0: 'topLeft',
+  1: 'topMiddle',
+  2: 'topRight',
+  3: 'middleLeft',
+  4: 'middleMiddle',
+  5: 'middleRight',
+  6: 'bottomLeft',
+  7: 'bottomMiddle',
+  8: 'bottomRight'
+}
+
 const store = require('../store.js')
 
 const signOnSuccess = function (data) {
@@ -93,7 +105,26 @@ const loadGamesFailure = function () {
 }
 
 const displayGame = function (data) {
-  // TODO: build game and display
+  const game = data.game['cells']
+  let turns = 0
+  for (let x = 0; x < game.length; x++) {
+    if (game[x]) {
+      $('#' + gameMap[x]).text(game[x])
+      $('#' + gameMap[x]).prop('disabled', true)
+      turns++
+    }
+  }
+
+  store.user.currentGame = {
+    id: data.game['id'],
+    cells: data.game['cells']
+  }
+
+  _setTurnMessage(turns)
+
+  $('#pregame').hide()
+  $('#gameSelectionArea').hide()
+  $('#gameArea').show()
 }
 
 const loadGameFailure = function () {
@@ -102,6 +133,14 @@ const loadGameFailure = function () {
   $('#displayFeedback').html(
     '<div class="alert alert-danger" role="alert">Failed to load your game!</div>'
   )
+}
+
+const _setTurnMessage = function (turns) {
+  $('#playerName').text(_whosTurn(turns))
+}
+
+const _whosTurn = function (turns) {
+  return turns % 2 === 0 ? 'X' : 'O'
 }
 
 const _clearChangePassModal = function () {
