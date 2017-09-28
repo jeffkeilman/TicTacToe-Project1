@@ -49,16 +49,20 @@ const onChangePass = function (event) {
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#loginRegisterModal').on('shown.bs.modal', function () {
-    $('#myInput').focus()
+    $('#emailLabel').focus()
   })
   $('#changePassModal').on('shown.bs.modal', function () {
-    $('#myInput').focus()
+    $('#oldPassLabel').focus()
   })
   $('#loginRegisterForm').on('submit', onLoginRegister)
   $('#changePassForm').on('submit', onChangePass)
   $('#logoutButton').on('click', onLogout)
   // Show/Hide password conf
   $('#isRegister').on('change', _showHidePassConf)
+  $('.drop-down-items').click(function (event) {
+    $('#selectGameSave').html($(event.currentTarget).text() +
+    ' <span class="caret" id="hack"></span>')
+  })
 }
 
 const _showHidePassConf = function () {

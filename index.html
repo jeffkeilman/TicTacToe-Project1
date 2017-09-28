@@ -27,27 +27,63 @@
           </button>
         </div>
       </header>
+
       <div id="displayFeedback"></div>
+
+      <!-- Initial screen -->
       <div id="pregame">
         <div id="explanationArea">
+          <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+              <h1>Tic-Tac-Toe</h1>
+              <h3>Game of Kings</h3>
+              <p class="explanation">
+                The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
+                game board. The first player is known as X and the second is O. Players alternate
+                placing Xs and Os on the game board until either oppent has three in a row or all nine
+                squares are filled. X always goes first, and in the event that no one has three in a row,
+                the stalemate is called a cat game.
+              </p>
+            </div>
+            <div class="col-xs-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Play saved game, start new one, view stats and game history -->
+      <div class="game-selection" id="gameSelectionArea">
+        <div class="row">
+          <div class="col-xs-12"><h1>Let's play!</h1></div>
+        </div>
+        <div class="row my-btn-row">
           <div class="col-xs-2"></div>
-          <div class="col-xs-8">
-            <h1>Tic-Tac-Toe</h1>
-            <h3>Game of Kings</h3>
-            <p class="explanation">
-              The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
-              game board. The first player is known as X and the second is O. Players alternate
-              placing Xs and Os on the game board until either oppent has three in a row or all nine
-              squares are filled. X always goes first, and in the event that no one has three in a row,
-              the stalemate is called a cat game.
-            </p>
+          <div class="col-xs-2">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="selectGameSave">
+                  Saved Games <span class="caret" id="hack"></span>
+                </button>
+                <ul class="dropdown-menu scrollable-menu" role="menu">
+                  <li><a class="drop-down-items" href="#">Hello</a></li>
+                  <li><a class="drop-down-items" href="#">Goodbye</a></li>
+                </ul>
+                <button type="button" class="btn btn-primary" id="submitSaveButton">Play</button>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="newGameButton">New Game</button>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="historyButton">Game History</button>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="statsButton">Game Stats</button>
           </div>
           <div class="col-xs-2"></div>
         </div>
       </div>
-      <div id="gameSelectionArea">
-        <!-- Everything you need to start a new game or continue an old one -->
-      </div>
+
+      <!-- Play! -->
       <div id="gameArea">
         <div class="turn-display" id="turnDisplay">
           Hey <span id="playerName"></span>, it's your turn!

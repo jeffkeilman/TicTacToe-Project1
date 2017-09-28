@@ -4,7 +4,7 @@ const store = require('../store.js')
 
 const signOnSuccess = function (data) {
   _clearLoginModal(true)
-  _prepGameArea()
+  _prepSelectionArea()
 
   store.user = data.user
 }
@@ -87,14 +87,12 @@ const _clearLoginModal = function (all) {
   }
 }
 
-const _prepGameArea = function () {
-  $('#pregame').hide()
+const _prepSelectionArea = function () {
   $('#loginButton').hide()
   $('#displayFeedback').hide()
   $('#changePass').show()
   $('#logoutButton').show()
-  $('#gameArea').show()
-  // TODO: Show game selection screen
+  $('#gameSelectionArea').show()
 }
 
 const _restoreMain = function () {
@@ -102,7 +100,7 @@ const _restoreMain = function () {
   $('#logoutButton').hide()
   $('#changePass').hide()
   $('#displayFeedback').hide()
-  // TODO: Hide game selection screen
+  $('#gameSelectionArea').hide()
   $('#pregame').show()
   $('#loginButton').show()
 }
