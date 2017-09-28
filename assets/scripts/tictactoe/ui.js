@@ -76,6 +76,24 @@ const newGameFailure = function () {
   )
 }
 
+const loadGames = function (data) {
+  data.games.forEach((game) => {
+    if (game.over === false) {
+      $('#gameSelectionArea ul').append(
+        '<li><a class="drop-down-items" href="#">' + game.id + '</a></li>'
+      )
+    }
+  })
+}
+
+const loadFailure = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Failed to load your games!</div>'
+  )
+}
+
 const _clearChangePassModal = function () {
   $('#changePassModal').modal('hide')
   $('#oldPassLabel').val('')
@@ -125,5 +143,7 @@ module.exports = {
   changePassSuccess,
   changePassFailure,
   newGameSuccess,
-  newGameFailure
+  newGameFailure,
+  loadGames,
+  loadFailure
 }

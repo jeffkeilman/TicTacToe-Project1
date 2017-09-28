@@ -24,8 +24,15 @@ const _onLoginRegister = function (event) {
     }
     api.login(data)
       .then(ui.signOnSuccess)
+      .then(_loadGames)
       .catch(ui.signOnFailure)
   }
+}
+
+const _loadGames = function () {
+  api.loadGames()
+    .then(ui.loadGames)
+    .catch(ui.loadFailure)
 }
 
 const _onLogout = function (event) {
@@ -76,7 +83,8 @@ const addEventHandlers = function () {
   // Show/Hide password conf
   $('#isRegister').on('change', _showHidePassConf)
   $('#newGameButton').on('click', _onNewGame)
-  $('.drop-down-items').click(function (event) {
+  // Set drop down menu (a button) text value to ID of selected game
+  $('#gameSelectionArea').on('click', '.drop-down-items', function (event) {
     $('#selectGameSave').html($(event.currentTarget).text() +
     ' <span class="caret" id="hack"></span>')
   })

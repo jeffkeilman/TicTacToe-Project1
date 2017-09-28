@@ -50,10 +50,21 @@ const newGame = function () {
   })
 }
 
+const loadGames = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   register,
   login,
   logout,
   changePass,
-  newGame
+  newGame,
+  loadGames
 }
