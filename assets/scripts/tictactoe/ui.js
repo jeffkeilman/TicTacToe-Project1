@@ -76,10 +76,6 @@ const changePassFailure = function () {
   _clearChangePassModal()
 }
 
-const newGameSuccess = function (data) {
-  // TODO: build game and display COULD LIKELY JUST MAKE THIS CALL TO DISPLAYGAME IN .THEN!
-}
-
 const newGameFailure = function () {
   $('#displayFeedback').show()
 
@@ -191,7 +187,6 @@ module.exports = {
   logoutFailure,
   changePassSuccess,
   changePassFailure,
-  newGameSuccess,
   newGameFailure,
   loadGames,
   loadGamesFailure,

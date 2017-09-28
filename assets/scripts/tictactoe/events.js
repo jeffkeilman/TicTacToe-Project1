@@ -64,7 +64,7 @@ const _onNewGame = function (event) {
   event.preventDefault()
 
   api.newGame()
-    .then(ui.newGameSuccess)
+    .then(ui.displayGame)
     .catch(ui.newGameFailure)
 }
 
