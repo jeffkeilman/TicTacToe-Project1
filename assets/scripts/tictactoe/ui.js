@@ -65,7 +65,7 @@ const changePassFailure = function () {
 }
 
 const newGameSuccess = function (data) {
-  // TODO: build game and display
+  // TODO: build game and display COULD LIKELY JUST MAKE THIS CALL TO DISPLAYGAME IN .THEN!
 }
 
 const newGameFailure = function () {
@@ -78,19 +78,29 @@ const newGameFailure = function () {
 
 const loadGames = function (data) {
   data.games.forEach((game) => {
-    if (game.over === false) {
-      $('#gameSelectionArea ul').append(
-        '<li><a class="drop-down-items" href="#">' + game.id + '</a></li>'
-      )
-    }
+    $('#gameSelectionArea ul').append(
+      '<li><a class="drop-down-items" href="#">' + game.id + '</a></li>'
+    )
   })
 }
 
-const loadFailure = function () {
+const loadGamesFailure = function () {
   $('#displayFeedback').show()
 
   $('#displayFeedback').html(
     '<div class="alert alert-danger" role="alert">Failed to load your games!</div>'
+  )
+}
+
+const displayGame = function (data) {
+  // TODO: build game and display
+}
+
+const loadGameFailure = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Failed to load your game!</div>'
   )
 }
 
@@ -145,5 +155,7 @@ module.exports = {
   newGameSuccess,
   newGameFailure,
   loadGames,
-  loadFailure
+  loadGamesFailure,
+  displayGame,
+  loadGameFailure
 }

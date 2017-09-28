@@ -42,7 +42,7 @@ const changePass = function (data) {
 
 const newGame = function () {
   return $.ajax({
-    url: config.apiOrigin + '/games',
+    url: config.apiOrigin + '/games/',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -52,7 +52,17 @@ const newGame = function () {
 
 const loadGames = function () {
   return $.ajax({
-    url: config.apiOrigin + '/games',
+    url: config.apiOrigin + '/games/?over=false',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const loadGame = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + id,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -66,5 +76,6 @@ module.exports = {
   logout,
   changePass,
   newGame,
-  loadGames
+  loadGames,
+  loadGame
 }

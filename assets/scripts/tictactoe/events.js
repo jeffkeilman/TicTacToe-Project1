@@ -32,7 +32,14 @@ const _onLoginRegister = function (event) {
 const _loadGames = function () {
   api.loadGames()
     .then(ui.loadGames)
-    .catch(ui.loadFailure)
+    .catch(ui.loadGamesFailure)
+}
+
+const _loadGame = function () {
+  const id = $('#selectGameSave').text()
+  api.loadGame(id)
+    .then(ui.displayGame)
+    .catch(ui.loadGameFailure)
 }
 
 const _onLogout = function (event) {
@@ -88,6 +95,7 @@ const addEventHandlers = function () {
     $('#selectGameSave').html($(event.currentTarget).text() +
     ' <span class="caret" id="hack"></span>')
   })
+  $('#submitSaveButton').on('click', _loadGame)
 }
 
 module.exports = {
