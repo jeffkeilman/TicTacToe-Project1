@@ -21,7 +21,6 @@ h3 {
 }
 
 .game-ar {
-  margin-top: 100px;
   text-align: center;
 }
 
@@ -88,4 +87,11 @@ h3 {
 
 .bottom-middle-sq {
   border-right: $border-size $border-type $border-color;
+}
+
+.turn-display {
+  font-family: $font-face;
+  font-size: $turn-display-font-size;
+  margin-bottom: 100px;
+  margin-top: 20px;
 }

@@ -16,28 +16,33 @@
       <header>
         <div class='title'>Tic Tac Toe</div>
         <div class='login'>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="loginButton">
             Login
           </button>
         </div>
       </header>
-      <div id="displayFeedback"></div>
-      <div id="explanationArea">
-        <div class="col-xs-2"></div>
-        <div class="intro col-xs-8">
-          <h1>Tic-Tac-Toe</h1>
-          <h3>Game of Kings</h3>
-          <p class="explanation">
-            The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
-            game board. The first player is known as X and the second is O. Players alternate
-            placing Xs and Os on the game board until either oppent has three in a row or all nine
-            squares are filled. X always goes first, and in the event that no one has three in a row,
-            the stalemate is called a cat game.
-          </p>
+      <div id="pregame">
+        <div id="displayFeedback"></div>
+        <div id="explanationArea">
+          <div class="col-xs-2"></div>
+          <div class="intro col-xs-8">
+            <h1>Tic-Tac-Toe</h1>
+            <h3>Game of Kings</h3>
+            <p class="explanation">
+              The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
+              game board. The first player is known as X and the second is O. Players alternate
+              placing Xs and Os on the game board until either oppent has three in a row or all nine
+              squares are filled. X always goes first, and in the event that no one has three in a row,
+              the stalemate is called a cat game.
+            </p>
+          </div>
+          <div class="col-xs-2"></div>
         </div>
-        <div class="col-xs-2"></div>
       </div>
       <div class="game-ar" id="gameArea">
+        <div class="turn-display" id="turnDisplay">
+          Hey <span id="playerName"></span>, it's your turn!
+        </div>
         <div class="row">
           <div class="col-xs-3 game-sq"></div>
           <div class="col-xs-2 top-left-sq game-sq">

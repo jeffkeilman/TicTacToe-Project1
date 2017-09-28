@@ -4,7 +4,7 @@ const store = require('../store.js')
 
 const signOnSuccess = function (data) {
   _clearModal(true)
-  // TODO: Display game
+  _prepGameArea()
 
   store.user = data.user
 }
@@ -36,11 +36,17 @@ const _clearModal = function (all) {
     $('#emailLabel').val('')
     $('#passwordLabel').val('')
     $('#passwordConfLabel').val('')
-    $('#isRegister').attr('checked', false)
+    $('#isRegister').prop('checked', false)
   } else {
     $('#passwordLabel').val('')
-    $('#isRegister').attr('checked', false)
+    $('#isRegister').prop('checked', false)
   }
+}
+
+const _prepGameArea = function () {
+  $('#pregame').hide()
+  $('#loginButton').hide()
+  $('#gameArea').show()
 }
 
 module.exports = {
