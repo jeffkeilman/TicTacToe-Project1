@@ -87,12 +87,65 @@ const _handleClickedCell = function (cell) {
     }
   }
   store.user.currentGame.cells[givenIndex] = _whosTurn(length)
-  console.log(store.user.currentGame.cells)
   ui.markIt(cell)
+  _checkForWin()
 }
 
 const _whosTurn = function (turns) {
   return turns % 2 === 0 ? 'X' : 'O'
+}
+
+const _checkForWin = function () {
+  const game = store.user.currentGame.cells
+  if (game[0] && game[3] && game[6]) {
+    if (game[0] === game[3] && game[3] === game[6]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[1] && game[4] && game[7]) {
+    if (game[1] === game[4] && game[4] === game[7]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[2] && game[5] && game[8]) {
+    if (game[2] === game[5] && game[5] === game[8]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[0] && game[1] && game[2]) {
+    if (game[0] === game[1] && game[1] === game[2]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[3] && game[4] && game[5]) {
+    if (game[3] === game[4] && game[4] === game[5]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[6] && game[7] && game[8]) {
+    if (game[6] === game[7] && game[7] === game[8]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[0] && game[4] && game[8]) {
+    if (game[0] === game[4] && game[4] === game[8]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  if (game[2] && game[4] && game[6]) {
+    if (game[2] === game[4] && game[4] === game[6]) {
+      ui.handleWin()
+      return true
+    }
+  }
+  return false
 }
 
 const addEventHandlers = function () {

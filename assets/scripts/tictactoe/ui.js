@@ -14,6 +14,22 @@ const gameMap = {
 
 const store = require('../store.js')
 
+const handleWin = function () {
+  let length = 0
+
+  for (const key in gameMap) {
+    $('#' + gameMap[key]).prop('disabled', true)
+  }
+
+  for (let x = 0; x < store.user.currentGame.cells.length; x++) {
+    if (store.user.currentGame.cells[x]) {
+      length++
+    }
+  }
+
+  $('#turnDisplay').text(_whosTurn(length + 1) + ' wins!')
+}
+
 const signOnSuccess = function (data) {
   _clearLoginModal(true)
   _prepSelectionArea()
@@ -204,5 +220,6 @@ module.exports = {
   displayGame,
   loadGameFailure,
   markIt,
-  gameMap
+  gameMap,
+  handleWin
 }
