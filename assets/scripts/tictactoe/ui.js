@@ -125,6 +125,7 @@ const loadGamesFailure = function () {
 
 const displayGame = function (data) {
   $('#histStatsRow').hide()
+  $('#displayFeedback').hide()
   const game = data.game['cells']
   // clean game screen
   for (let x = 0; x < game.length; x++) {
@@ -161,6 +162,14 @@ const loadGameFailure = function () {
 
   $('#displayFeedback').html(
     '<div class="alert alert-danger" role="alert">Failed to load your game!</div>'
+  )
+}
+
+const noGameToLoad = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Please choose a game before pressing that button.</div>'
   )
 }
 
@@ -387,5 +396,6 @@ module.exports = {
   showStats,
   showStatsError,
   handleDraw,
-  passwordMismatch
+  passwordMismatch,
+  noGameToLoad
 }

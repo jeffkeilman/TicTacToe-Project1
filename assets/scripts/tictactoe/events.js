@@ -40,10 +40,14 @@ const _loadGames = function () {
 }
 
 const _loadGame = function () {
-  const id = $('#selectGameSave').text()
-  api.loadGame(id)
-    .then(ui.displayGame)
-    .catch(ui.loadGameFailure)
+  if (+$('#selectGameSave').text()) {
+    const id = $('#selectGameSave').text()
+    api.loadGame(id)
+      .then(ui.displayGame)
+      .catch(ui.loadGameFailure)
+  } else {
+    ui.noGameToLoad()
+  }
 }
 
 const _onLogout = function (event) {
