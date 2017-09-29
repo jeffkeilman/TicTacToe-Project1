@@ -180,10 +180,14 @@ const updateFailure = function () {
 const goBack = function () {
   console.log('Hello there')
   store.user.currentGame = null
-  $('#selectGameSave').html('Saved Games <span class="caret" id="hack"></span>')
+  _resetSaveGameMessage()
   $('#gameArea').hide()
   $('#pregame').show()
   $('#gameSelectionArea').show()
+}
+
+const _resetSaveGameMessage = function () {
+  $('#selectGameSave').html('Saved Games <span class="caret" id="hack"></span>')
 }
 
 const _setTurnMessage = function (turns) {
@@ -224,6 +228,7 @@ const _prepSelectionArea = function () {
 }
 
 const _restoreMain = function () {
+  _resetSaveGameMessage()
   $('#gameArea').hide()
   $('#logoutButton').hide()
   $('#changePass').hide()
