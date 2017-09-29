@@ -70,6 +70,17 @@ const loadGame = function (id) {
   })
 }
 
+const updateGame = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + store.user.currentGame.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   register,
   login,
@@ -77,5 +88,6 @@ module.exports = {
   changePass,
   newGame,
   loadGames,
-  loadGame
+  loadGame,
+  updateGame
 }

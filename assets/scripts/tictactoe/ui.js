@@ -158,6 +158,14 @@ const markIt = function (cell) {
   $(cell).text(_whosTurn(length + 1))
 }
 
+const updateFailure = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Unable to save your game!</div>'
+  )
+}
+
 const _setTurnMessage = function (turns) {
   $('#playerName').text(_whosTurn(turns))
 }
@@ -221,5 +229,6 @@ module.exports = {
   loadGameFailure,
   markIt,
   gameMap,
-  handleWin
+  handleWin,
+  updateFailure
 }

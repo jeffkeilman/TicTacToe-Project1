@@ -86,9 +86,23 @@ const _handleClickedCell = function (cell) {
       length++
     }
   }
-  store.user.currentGame.cells[givenIndex] = _whosTurn(length)
+  const xOrO = _whosTurn(length)
+  store.user.currentGame.cells[givenIndex] = xOrO
   ui.markIt(cell)
-  _checkForWin()
+  const win = _checkForWin()
+
+  const data = {
+    game: {
+      cell: {
+        index: givenIndex,
+        value: xOrO
+      },
+      over: win
+    }
+  }
+
+  api.updateGame(data)
+    .catch(ui.updateFailure)
 }
 
 const _whosTurn = function (turns) {
