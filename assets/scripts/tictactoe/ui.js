@@ -131,6 +131,17 @@ const loadGameFailure = function () {
   )
 }
 
+const markIt = function (cell) {
+  let length = 0
+  for (let x = 0; x < store.user.currentGame.cells.length; x++) {
+    if (store.user.currentGame.cells[x]) {
+      length++
+    }
+  }
+  _setTurnMessage(length)
+  $(cell).text(_whosTurn(length + 1))
+}
+
 const _setTurnMessage = function (turns) {
   $('#playerName').text(_whosTurn(turns))
 }
@@ -191,5 +202,7 @@ module.exports = {
   loadGames,
   loadGamesFailure,
   displayGame,
-  loadGameFailure
+  loadGameFailure,
+  markIt,
+  gameMap
 }

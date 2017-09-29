@@ -3,6 +3,7 @@
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
+const store = require('../store.js')
 
 const _onLoginRegister = function (event) {
   // TODO: Add error handling
@@ -76,6 +77,24 @@ const _showHidePassConf = function () {
   }
 }
 
+const _handleClickedCell = function (cell) {
+  const givenIndex = Object.keys(ui.gameMap).find(key => ui.gameMap[key] === $(cell).prop('id'))
+  let length = 0
+  $(cell).prop('disabled', true)
+  for (let x = 0; x < store.user.currentGame.cells.length; x++) {
+    if (store.user.currentGame.cells[x]) {
+      length++
+    }
+  }
+  store.user.currentGame.cells[givenIndex] = _whosTurn(length)
+  console.log(store.user.currentGame.cells)
+  ui.markIt(cell)
+}
+
+const _whosTurn = function (turns) {
+  return turns % 2 === 0 ? 'X' : 'O'
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#loginRegisterModal').on('shown.bs.modal', function () {
@@ -96,6 +115,44 @@ const addEventHandlers = function () {
     ' <span class="caret" id="hack"></span>')
   })
   $('#submitSaveButton').on('click', _loadGame)
+
+  // All of the game buttons
+  $('#gameArea').on('click', '#topLeft:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#topMiddle:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#topRight:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#middleLeft:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#middleMiddle:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#middleRight:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#bottomLeft:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#bottomMiddle:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
+  $('#gameArea').on('click', '#bottomRight:enabled', function (event) {
+    event.preventDefault()
+    _handleClickedCell(this)
+  })
 }
 
 module.exports = {
