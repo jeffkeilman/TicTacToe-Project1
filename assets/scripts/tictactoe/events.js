@@ -82,6 +82,7 @@ const _showHidePassConf = function () {
 }
 
 const _handleClickedCell = function (cell) {
+  let over = false
   const givenIndex = Object.keys(ui.gameMap).find(key => ui.gameMap[key] === $(cell).prop('id'))
   let length = 0
   $(cell).prop('disabled', true)
@@ -93,7 +94,14 @@ const _handleClickedCell = function (cell) {
   const xOrO = _whosTurn(length)
   store.user.currentGame.cells[givenIndex] = xOrO
   ui.markIt(cell)
-  const win = _checkForWin()
+
+  // check for win or draw
+  if (_checkForWin()) {
+    over = true
+  } else if (length > 7) {
+    ui.handleDraw()
+    over = true
+  }
 
   const data = {
     game: {
@@ -101,14 +109,14 @@ const _handleClickedCell = function (cell) {
         index: givenIndex,
         value: xOrO
       },
-      over: win
+      over: over
     }
   }
 
   api.updateGame(data)
     .catch(ui.updateFailure)
 
-  if (win) {
+  if (over) {
     store.user.currentGame = null
   }
 }
@@ -119,7 +127,6 @@ const _whosTurn = function (turns) {
 
 const _checkForWin = function () {
   const game = store.user.currentGame.cells
-  // TODO: HANDLE DRAW!
   if (game[0] && game[3] && game[6]) {
     if (game[0] === game[3] && game[3] === game[6]) {
       ui.handleWin()

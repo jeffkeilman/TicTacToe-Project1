@@ -17,9 +17,7 @@ const store = require('../store.js')
 const handleWin = function () {
   let length = 0
 
-  for (const key in gameMap) {
-    $('#' + gameMap[key]).prop('disabled', true)
-  }
+  _lockBoard()
 
   for (let x = 0; x < store.user.currentGame.cells.length; x++) {
     if (store.user.currentGame.cells[x]) {
@@ -28,6 +26,10 @@ const handleWin = function () {
   }
 
   $('#turnDisplay').text(_whosTurn(length + 1) + ' wins!')
+}
+
+const handleDraw = function () {
+  $('#turnDisplay').text('Draw!')
 }
 
 const signOnSuccess = function (data) {
@@ -62,7 +64,6 @@ const registerFailure = function () {
 }
 
 const logoutSuccess = function () {
-  // TODO: ADD HANDLING FOR EVERYTHING ELSE, GAME SELECTION, TEST OTHER THINGS
   _restoreMain()
   store.user = null
 }
@@ -231,6 +232,12 @@ const loadFinishedGamesError = function () {
   )
 }
 
+const _lockBoard = function () {
+  for (const key in gameMap) {
+    $('#' + gameMap[key]).prop('disabled', true)
+  }
+}
+
 const _winningLosingLists = function (games) {
   const winningList = []
   const losingList = []
@@ -374,5 +381,6 @@ module.exports = {
   showFinishedGames,
   loadFinishedGamesError,
   showStats,
-  showStatsError
+  showStatsError,
+  handleDraw
 }
