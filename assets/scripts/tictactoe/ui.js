@@ -194,14 +194,33 @@ const showFinishedGames = function (data) {
   const gamesLists = _winningLosingLists(games)
 
   for (let x = 0; x < gamesLists.winners.length; x++) {
-    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': WIN!')
+    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': WIN!</li>')
   }
 
   for (let x = 0; x < gamesLists.losers.length; x++) {
-    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': LOSS!')
+    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': LOSS!</li>')
   }
 
   $('#histStatsRow').show()
+}
+
+const showStats = function (data) {
+  $('#histStatsRow ol').empty()
+  const games = data.games
+
+  // build games list
+  const gamesLists = _winningLosingLists(games)
+
+  $('#histStatsRow ol').append('<li>Wins: ' + gamesLists.winners.length + ' Losses: ' + gamesLists.losers.length + '</li>')
+  $('#histStatsRow').show()
+}
+
+const showStatsError = function (data) {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Unable to load stats!</div>'
+  )
 }
 
 const loadFinishedGamesError = function () {
@@ -353,5 +372,7 @@ module.exports = {
   updateFailure,
   goBack,
   showFinishedGames,
-  loadFinishedGamesError
+  loadFinishedGamesError,
+  showStats,
+  showStatsError
 }

@@ -184,6 +184,13 @@ const _onClickHist = function (event) {
     .catch(ui.loadFinishedGamesError)
 }
 
+const _onClickStats = function (event) {
+  event.preventDefault()
+  api.loadFinishedGames()
+    .then(ui.showStats)
+    .catch(ui.showStatsError)
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#loginRegisterModal').on('shown.bs.modal', function () {
@@ -207,6 +214,7 @@ const addEventHandlers = function () {
   $('#goBackButton').on('click', _goBack)
   $('#newGameInGameButton').on('click', _onNewGame)
   $('#historyButton').on('click', _onClickHist)
+  $('#statsButton').on('click', _onClickStats)
 
   // All of the game buttons
   $('#gameArea').on('click', '#topLeft:enabled', function (event) {
