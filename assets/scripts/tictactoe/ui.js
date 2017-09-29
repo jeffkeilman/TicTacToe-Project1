@@ -62,6 +62,7 @@ const registerFailure = function () {
 }
 
 const logoutSuccess = function () {
+  // TODO: ADD HANDLING FOR EVERYTHING ELSE, GAME SELECTION, TEST OTHER THINGS
   _restoreMain()
   store.user = null
 }
@@ -101,6 +102,7 @@ const newGameFailure = function () {
 }
 
 const loadGames = function (data) {
+  $('#gameSelectionArea ul').empty()
   data.games.forEach((game) => {
     $('#gameSelectionArea ul').append(
       '<li><a class="drop-down-items" href="#">' + game.id + '</a></li>'
@@ -118,7 +120,15 @@ const loadGamesFailure = function () {
 
 const displayGame = function (data) {
   const game = data.game['cells']
+  // clean game screen
+  for (let x = 0; x < game.length; x++) {
+    $('#' + gameMap[x]).text('')
+    $('#' + gameMap[x]).prop('disabled', false)
+  }
+  $('#turnDisplay').html('Hey <span id="playerName"></span>, it\'s your turn!')
+
   let turns = 0
+  // $('#topLeft').prop('disabled', false)
   for (let x = 0; x < game.length; x++) {
     if (game[x]) {
       $('#' + gameMap[x]).text(game[x])
@@ -133,6 +143,7 @@ const displayGame = function (data) {
   }
 
   _setTurnMessage(turns)
+  $('#gameID').text(store.user.currentGame.id)
 
   $('#pregame').hide()
   $('#gameSelectionArea').hide()
@@ -164,6 +175,15 @@ const updateFailure = function () {
   $('#displayFeedback').html(
     '<div class="alert alert-danger" role="alert">Unable to save your game!</div>'
   )
+}
+
+const goBack = function () {
+  console.log('Hello there')
+  store.user.currentGame = null
+  $('#selectGameSave').html('Saved Games <span class="caret" id="hack"></span>')
+  $('#gameArea').hide()
+  $('#pregame').show()
+  $('#gameSelectionArea').show()
 }
 
 const _setTurnMessage = function (turns) {
@@ -230,5 +250,6 @@ module.exports = {
   markIt,
   gameMap,
   handleWin,
-  updateFailure
+  updateFailure,
+  goBack
 }

@@ -64,6 +64,10 @@ const _onChangePass = function (event) {
 const _onNewGame = function (event) {
   event.preventDefault()
 
+  if (store.user.currentGame) {
+    store.user.currentGame = null
+  }
+
   api.newGame()
     .then(ui.displayGame)
     .catch(ui.newGameFailure)
@@ -103,6 +107,10 @@ const _handleClickedCell = function (cell) {
 
   api.updateGame(data)
     .catch(ui.updateFailure)
+
+  if (win) {
+    store.user.currentGame = null
+  }
 }
 
 const _whosTurn = function (turns) {
@@ -162,6 +170,12 @@ const _checkForWin = function () {
   return false
 }
 
+const _goBack = function (event) {
+  event.preventDefault()
+  _loadGames()
+  ui.goBack()
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#loginRegisterModal').on('shown.bs.modal', function () {
@@ -182,6 +196,8 @@ const addEventHandlers = function () {
     ' <span class="caret" id="hack"></span>')
   })
   $('#submitSaveButton').on('click', _loadGame)
+  $('#goBackButton').on('click', _goBack)
+  $('#newGameInGameButton').on('click', _onNewGame)
 
   // All of the game buttons
   $('#gameArea').on('click', '#topLeft:enabled', function (event) {
