@@ -119,6 +119,7 @@ const loadGamesFailure = function () {
 }
 
 const displayGame = function (data) {
+  $('#histStatsRow').hide()
   const game = data.game['cells']
   // clean game screen
   for (let x = 0; x < game.length; x++) {
@@ -178,12 +179,105 @@ const updateFailure = function () {
 }
 
 const goBack = function () {
-  console.log('Hello there')
   store.user.currentGame = null
   _resetSaveGameMessage()
   $('#gameArea').hide()
   $('#pregame').show()
   $('#gameSelectionArea').show()
+}
+
+const showFinishedGames = function (data) {
+  $('#histStatsRow ol').empty()
+  const games = data.games
+
+  // build games list
+  const gamesLists = _winningLosingLists(games)
+
+  for (let x = 0; x < gamesLists.winners.length; x++) {
+    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': WIN!')
+  }
+
+  for (let x = 0; x < gamesLists.losers.length; x++) {
+    $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': LOSS!')
+  }
+
+  $('#histStatsRow').show()
+}
+
+const loadFinishedGamesError = function () {
+  $('#displayFeedback').show()
+
+  $('#displayFeedback').html(
+    '<div class="alert alert-danger" role="alert">Unable to load game history!</div>'
+  )
+}
+
+const _winningLosingLists = function (games) {
+  const winningList = []
+  const losingList = []
+  for (let x = 0; x < games.length; x++) {
+    const winner = _checkForWinner(games[x].cells)
+    const playerExists = games[x]['player_' + winner.toLowerCase()]
+
+    if (playerExists) {
+      if (games[x]['player_' + winner.toLowerCase()].id === store.user.id) {
+        winningList.push(games[x])
+      } else {
+        losingList.push(games[x])
+      }
+    } else {
+      losingList.push(games[x])
+    }
+  }
+
+  return {
+    winners: winningList,
+    losers: losingList
+  }
+}
+
+const _checkForWinner = function (game) {
+  if (game[0] && game[3] && game[6]) {
+    if (game[0] === game[3] && game[3] === game[6]) {
+      return game[0]
+    }
+  }
+  if (game[1] && game[4] && game[7]) {
+    if (game[1] === game[4] && game[4] === game[7]) {
+      return game[1]
+    }
+  }
+  if (game[2] && game[5] && game[8]) {
+    if (game[2] === game[5] && game[5] === game[8]) {
+      return game[2]
+    }
+  }
+  if (game[0] && game[1] && game[2]) {
+    if (game[0] === game[1] && game[1] === game[2]) {
+      return game[0]
+    }
+  }
+  if (game[3] && game[4] && game[5]) {
+    if (game[3] === game[4] && game[4] === game[5]) {
+      return game[3]
+    }
+  }
+  if (game[6] && game[7] && game[8]) {
+    if (game[6] === game[7] && game[7] === game[8]) {
+      return game[6]
+    }
+  }
+  if (game[0] && game[4] && game[8]) {
+    if (game[0] === game[4] && game[4] === game[8]) {
+      return game[0]
+    }
+  }
+  if (game[2] && game[4] && game[6]) {
+    if (game[2] === game[4] && game[4] === game[6]) {
+      return game[2]
+    }
+  }
+  return false
 }
 
 const _resetSaveGameMessage = function () {
@@ -229,6 +323,7 @@ const _prepSelectionArea = function () {
 
 const _restoreMain = function () {
   _resetSaveGameMessage()
+  $('#histStatsRow').hide()
   $('#gameArea').hide()
   $('#logoutButton').hide()
   $('#changePass').hide()
@@ -256,5 +351,7 @@ module.exports = {
   gameMap,
   handleWin,
   updateFailure,
-  goBack
+  goBack,
+  showFinishedGames,
+  loadFinishedGamesError
 }

@@ -119,6 +119,7 @@ const _whosTurn = function (turns) {
 
 const _checkForWin = function () {
   const game = store.user.currentGame.cells
+  // TODO: HANDLE DRAW!
   if (game[0] && game[3] && game[6]) {
     if (game[0] === game[3] && game[3] === game[6]) {
       ui.handleWin()
@@ -176,6 +177,13 @@ const _goBack = function (event) {
   ui.goBack()
 }
 
+const _onClickHist = function (event) {
+  event.preventDefault()
+  api.loadFinishedGames()
+    .then(ui.showFinishedGames)
+    .catch(ui.loadFinishedGamesError)
+}
+
 const addEventHandlers = function () {
   // Adds focus support on modals for HTML5
   $('#loginRegisterModal').on('shown.bs.modal', function () {
@@ -198,6 +206,7 @@ const addEventHandlers = function () {
   $('#submitSaveButton').on('click', _loadGame)
   $('#goBackButton').on('click', _goBack)
   $('#newGameInGameButton').on('click', _onNewGame)
+  $('#historyButton').on('click', _onClickHist)
 
   // All of the game buttons
   $('#gameArea').on('click', '#topLeft:enabled', function (event) {
