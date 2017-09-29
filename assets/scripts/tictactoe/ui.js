@@ -28,6 +28,10 @@ const handleWin = function () {
   $('#turnDisplay').text(_whosTurn(length + 1) + ' wins!')
 }
 
+const passwordMismatch = function () {
+  $('#passError').show().delay(5000).fadeOut()
+}
+
 const handleDraw = function () {
   $('#turnDisplay').text('Draw!')
 }
@@ -382,5 +386,6 @@ module.exports = {
   loadFinishedGamesError,
   showStats,
   showStatsError,
-  handleDraw
+  handleDraw,
+  passwordMismatch
 }

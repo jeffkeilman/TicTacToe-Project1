@@ -6,15 +6,18 @@ const ui = require('./ui')
 const store = require('../store.js')
 
 const _onLoginRegister = function (event) {
-  // TODO: Add error handling
   event.preventDefault()
   let data = getFormFields(event.target)
 
   if ($('#isRegister').is(':checked')) {
     // register
-    api.register(data)
-      .then(ui.registerSuccess)
-      .catch(ui.registerFailure)
+    if (data.credentials.password === data.credentials.password_confirmation) {
+      api.register(data)
+        .then(ui.registerSuccess)
+        .catch(ui.registerFailure)
+    } else {
+      ui.passwordMismatch()
+    }
   } else {
     // login, ensure data is cleaned of password_conf
     data = {
@@ -52,7 +55,6 @@ const _onLogout = function (event) {
 }
 
 const _onChangePass = function (event) {
-  // TODO: Add error handling
   event.preventDefault()
   const data = getFormFields(event.target)
 
