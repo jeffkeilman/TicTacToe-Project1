@@ -205,7 +205,7 @@ const showFinishedGames = function (data) {
   const games = data.games
 
   // build games list
-  const gamesLists = _winningLosingLists(games)
+  const gamesLists = _winningLosingTiesLists(games)
 
   for (let x = 0; x < gamesLists.winners.length; x++) {
     $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': WIN!</li>')
@@ -213,6 +213,10 @@ const showFinishedGames = function (data) {
 
   for (let x = 0; x < gamesLists.losers.length; x++) {
     $('#histStatsRow ol').append('<li>' + gamesLists.winners[x].id + ': LOSS!</li>')
+  }
+
+  for (let x = 0; x < gamesLists.losers.length; x++) {
+    $('#histStatsRow ol').append('<li>' + gamesLists.ties[x].id + ': TIE!</li>')
   }
 
   $('#histStatsRow').show()
@@ -223,9 +227,9 @@ const showStats = function (data) {
   const games = data.games
 
   // build games list
-  const gamesLists = _winningLosingLists(games)
+  const gamesLists = _winningLosingTiesLists(games)
 
-  $('#histStatsRow ol').append('<li>Wins: ' + gamesLists.winners.length + ' Losses: ' + gamesLists.losers.length + '</li>')
+  $('#histStatsRow ol').append('<li>Wins: ' + gamesLists.winners.length + ' Losses: ' + gamesLists.losers.length + ' Ties: ' + gamesLists.ties.length + '</li>')
   $('#histStatsRow').show()
 }
 
@@ -251,27 +255,34 @@ const _lockBoard = function () {
   }
 }
 
-const _winningLosingLists = function (games) {
+const _winningLosingTiesLists = function (games) {
   const winningList = []
   const losingList = []
+  const tiesList = []
   for (let x = 0; x < games.length; x++) {
     const winner = _checkForWinner(games[x].cells)
-    const playerExists = games[x]['player_' + winner.toLowerCase()]
 
-    if (playerExists) {
-      if (games[x]['player_' + winner.toLowerCase()].id === store.user.id) {
-        winningList.push(games[x])
+    if (winner) {
+      const playerExists = games[x]['player_' + winner.toLowerCase()]
+
+      if (playerExists) {
+        if (games[x]['player_' + winner.toLowerCase()].id === store.user.id) {
+          winningList.push(games[x])
+        } else {
+          losingList.push(games[x])
+        }
       } else {
         losingList.push(games[x])
       }
-    } else {
-      losingList.push(games[x])
+    } else if (games[x].over === true) {
+      tiesList.push(games[x])
     }
   }
 
   return {
     winners: winningList,
-    losers: losingList
+    losers: losingList,
+    ties: tiesList
   }
 }
 
