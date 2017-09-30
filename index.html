@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+
+      <header>
+        <div class='title'>Tic Tac Toe</div>
+        <div class='login-logout'>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegisterModal" id="loginButton">
+            Login
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassModal" id="changePass">
+            Change Password
+          </button>
+          <button type="button" class="btn btn-primary" id="logoutButton">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <div id="displayFeedback"></div>
+
+      <!-- Initial screen -->
+      <div id="pregame">
+        <div id="explanationArea">
+          <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+              <h1>Tic-Tac-Toe</h1>
+              <h3>Game of Kings</h3>
+              <p class="explanation">
+                The object of Tic-Tac-Toe is to get three in a row. You play on a three by three
+                game board. The first player is known as X and the second is O. Players alternate
+                placing Xs and Os on the game board until either oppent has three in a row or all nine
+                squares are filled. X always goes first, and in the event that no one has three in a row,
+                the stalemate is called a cat game.
+              </p>
+            </div>
+            <div class="col-xs-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Play saved game, start new one, view stats and game history -->
+      <div class="game-selection" id="gameSelectionArea">
+        <div class="row">
+          <div class="col-xs-12"><h1>Let's play!</h1></div>
+        </div>
+        <div class="row my-btn-row">
+          <div class="col-xs-2"></div>
+          <div class="col-xs-2">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="selectGameSave">
+                  Saved Games <span class="caret" id="hack"></span>
+                </button>
+                <ul class="dropdown-menu scrollable-menu" role="menu"></ul>
+                <button type="button" class="btn btn-primary" id="submitSaveButton">Play</button>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="newGameButton">New Game</button>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="historyButton">Game History</button>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-primary" id="statsButton">Game Stats</button>
+          </div>
+          <div class="col-xs-2"></div>
+        </div>
+        <div class="row my-hist-stats-row" id='histStatsRow'>
+          <div class="col-xs-4"></div>
+          <div class="pre-scrollable col-xs-4 my-his-stats-div">
+            <ol>
+              <li>Don't get mad linter</li>
+            </ol>
+          </div>
+          <div class="col-xs-4"></div>
+        </div>
+      </div>
+
+      <!-- Play! -->
+      <div id="gameArea">
+        <div class="turn-display" id="turnDisplay">
+          Hey <span id="playerName"></span>, it's your turn!
+        </div>
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 top-left-sq game-sq">
+            <button class="btn game-btn" id="topLeft"></button>
+          </div>
+          <div class="col-xs-2 top-middle-sq game-sq">
+            <button class="btn game-btn" id="topMiddle"></button>
+          </div>
+          <div class="col-xs-2 top-right-sq game-sq">
+            <button class="btn game-btn" id="topRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 middle-left-sq game-sq">
+            <button class="btn game-btn" id="middleLeft"></button>
+          </div>
+          <div class="col-xs-2 middle-middle-sq game-sq">
+            <button class="btn game-btn" id="middleMiddle"></button>
+          </div>
+          <div class="col-xs-2 middle-right-sq game-sq">
+            <button class="btn game-btn" id="middleRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 game-sq"></div>
+          <div class="col-xs-2 bottom-left-sq game-sq">
+            <button class="btn game-btn" id="bottomLeft"></button>
+          </div>
+          <div class="col-xs-2 bottom-middle-sq game-sq">
+            <button class="btn game-btn" id="bottomMiddle"></button>
+          </div>
+          <div class="col-xs-2 game-sq">
+            <button class="btn game-btn" id="bottomRight"></button>
+          </div>
+          <div class="col-xs-3 game-sq"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-2">
+            <h5>
+              Your game ID is: <span id="gameID"></span>, we save your game after
+              every move :)
+            </h5>
+          </div>
+          <div class="col-xs-5"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-5">
+            <button type="button" class="btn btn-primary" id="goBackButton">Go Back</button>
+          </div>
+          <div class="col-xs-5">
+            <button type="button" class="btn btn-primary" id="newGameInGameButton">New Game</button>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+
+      <!-- Login/Register Modal -->
+      <div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="buttonLabel">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- User form for email and password -->
+              <form id="loginRegisterForm">
+                <div class="form-group">
+                  <label for="emailLabel">Email address</label>
+                  <input name="credentials[email]" type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="passwordLabel">Password</label>
+                  <input name="credentials[password]" type="password" class="form-control" id="passwordLabel" placeholder="Password">
+                </div>
+                <div class="form-group" id="confirmPassword">
+                  <label for="passwordLabel">Confirm Password</label>
+                  <input name="credentials[password_confirmation]" type="password" class="form-control" id="passwordConfLabel" placeholder="Password Confirmation">
+                </div>
+                <div class="form-check">
+                  <!-- New users will be able to register, input will be inserted automatically -->
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" id="isRegister">
+                    Register new user?
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              <div class="alert alert-danger" role="alert" id="passError">Password and confirmation don't match, please try again.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Pass Modal -->
+      <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="buttonLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="buttonLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- User form for email and password -->
+              <form id="changePassForm">
+                <div class="form-group">
+                  <label for="prevPassLabel">Previous Password</label>
+                  <input name="passwords[old]" type="password" class="form-control" id="oldPassLabel" aria-describedby="emailHelp" placeholder="Previous Password">
+                </div>
+                <div class="form-group">
+                  <label for="curPassLabel">New Password</label>
+                  <input name="passwords[new]" type="password" class="form-control" id="newPassLabel" placeholder="New Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </body>
+</html>
