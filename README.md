@@ -1,61 +1,41 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# Tic-Tac-Toe
+A simple tic-tac-toe game operating on a single page and playable in the
+browser.
+Users are able to register new accounts and authenticate using
+email and password pairs. Once authenticated, users can change their
+passwords, start new games, load existing games, view a history of their
+finished games, and view stats for how many wins, losses, and ties they
+have had.
 
-# browser-template
+## Technologies-Used
+Styling was done with HTML and CSS/Sass. The game engine was built with
+JavaScript. DOM manipulation was achieved with jQuery. AJAX was used
+for all HTTP requests to and from a 3rd party API.
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+## Planning
+I used wireframes to hash out some early design decisions. I wrote a few
+user stories to help organize the different features I had planned for
+the game. I did some whiteboarding to help visualize how I would represent
+the game board programatically.
 
-## Installation
+## Development-and-Problem-Solving
+Throughout the project, I tried to break down every objective into steps.
+A good example of this is visually displaying gameplay history to my
+users. I knew that the API I was using supported a GET request that pulled
+all of the games a given user had finished playing. I also knew that I
+could use a technique that I had already used in the program to determine
+whether or not a game had been won or tied. From there, it would be a
+simple matter of extending this function to determine who the winner was
+by comparing the winning piece (X or O) to the piece the given user was
+playing with during that game. With all of this knowledge, I could display
+wins, losses, and ties to the user in the form of a scrollable div.
 
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Replace all instances of `ga-wdi-boston.browser-template` with the name of your project.
-1.  Move into the new project and `git init`
-1.  Add all of the files in your project with the command `git add -A`
-  -   *Note:* THIS IS THE ONLY TIME YOU SHOULD RUN THIS COMMAND
-1.  Commit all of your files with the command `git commit`
-  -   Your commit title should read `Initial commit`
-1.  Install dependencies with `npm install`.
+## Future-Versions
+In the future, I would like to implement a multi-player online version of
+the game. I would like to make the game a true SPA by supporting
+deep-linking, native browser nav, and a better system for dynamic
+structure and style display instead of hiding and showing existing
+elements of the webpage.
 
-## Structure
-
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/index.js`](assets/scripts/index.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
-
-Developers should set `config.apiOrigins.production` (and
-`config.apiOrigins.development` if it differs from the default).  With
-`apiOrigins` set, developers may rely on `config.apiOrigin` as the base for API
-URLs.
-
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss).
-
-Developers should use [getFormFields](forms.md) to retrieve form data to send to
-an API.
-
-To deploy a browser-template based SPA, run `grunt deploy`.
-
-## Tasks
-
-Developers should run these often!
-
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt make-standard`: reformats all your code in the JavaScript Standard Style
--   `grunt <server|serve|s>`: generates bundles, watches, and livereloads
--   `grunt test`: runs any automated tests, depends on `grunt build`
--   `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
-
-## [License](LICENSE)
-
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+## User-Stories-and-Wireframes
+https://docs.google.com/document/d/1OTJuDP5QIo-VbowHuvsAM3JnMhTYcFn5wyU_w-Twtyc/edit?usp=sharing
